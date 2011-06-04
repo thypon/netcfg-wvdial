@@ -1,0 +1,5 @@
+CONNECTION="wvdial"
+INTERFACE="ignore"
+WVDIAL_CONFIG="/etc/wvdial.conf"
+WVDIAL_PID_FILE="/tmp/wvdial.pid"
+WVDIAL_FLAGS=""
