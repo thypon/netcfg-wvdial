@@ -6,11 +6,13 @@ netcfg-wvdial is an hook between netcfg & wvdial. I provide PKGBUILD on AUR.
 Example configuration
 ---------------------
 
-  CONNECTION="wvdial"
-  WVDIAL_PROFILE="vodafone"
-  INTERFACE="ignore"
-  #WVDIAL_PID_FILE="/tmp/wvdial.pid"
-  #WVDIAL_FLAGS=""
+`
+CONNECTION="wvdial"
+WVDIAL_PROFILE="vodafone"
+INTERFACE="ignore"
+#WVDIAL_PID_FILE="/tmp/wvdial.pid"
+#WVDIAL_FLAGS=""
+`
 
 MIT License
 -----------
