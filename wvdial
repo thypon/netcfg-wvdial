@@ -3,7 +3,7 @@
 
 wvdial_up () {
   load_profile $1
-  [[ -z "$WVDIAL_PID_FILE" ]] && WVDIAL_CTL_FILE="/var/run/wvdial-$1.pid"
+  [[ -z "$WVDIAL_CTL_FILE" ]] && WVDIAL_CTL_FILE="/var/run/wvdial-$1.pid"
   [[ -z "$WVDIAL_FLAGS" ]] && WVDIAL_FLAGS=""
   [[ -z "$WVDIAL_PROFILE" ]] && WVDIAL_PROFILE=$1
 
@@ -36,7 +36,7 @@ wvdial_up () {
 
 wvdial_down() {
     load_profile $1
-    [[ -z "$WVDIAL_PID_FILE" ]] && WVDIAL_CTL_FILE="/var/run/wvdial-$1.pid"
+    [[ -z "$WVDIAL_CTL_FILE" ]] && WVDIAL_CTL_FILE="/var/run/wvdial-$1.pid"
 
     kill $(pidof -o %PPID wvdial)
 
