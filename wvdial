@@ -3,11 +3,11 @@
 
 wvdial_up () {
   load_profile $1
-  [[ -z "$WVDIAL_CONFIG" ]] && WVDIAL_CONFIG="/etc/wvdial.conf"
   [[ -z "$WVDIAL_PID_FILE" ]] && WVDIAL_CTL_FILE="/var/run/wvdial-$1.pid"
   [[ -z "$WVDIAL_FLAGS" ]] && WVDIAL_FLAGS=""
+  [[ -z "$WVDIAL_PROFILE" ]] && WVDIAL_PROFILE=$1
 
-  dtach -x $WVDIAL_CTL_FILE wvdial -C $WVDIAL_CONFIG $WVDIAL_FLAGS $1
+  dtach -n $WVDIAL_CTL_FILE wvdial $WVDIAL_FLAGS $WVDIAL_PROFILE
 
   if [[ $? -ne 0 ]]; then
     report_fail "WVDIAL connection failed"
