@@ -4,10 +4,10 @@
 wvdial_up () {
   load_profile $1
   [[ -z "$WVDIAL_CONFIG" ]] && WVDIAL_CONFIG="/etc/wvdial.conf"
-  [[ -z "$WVDIAL_PID_FILE" ]] && WVDIAL_PID_FILE="/var/run/wvdial-$1.pid"
+  [[ -z "$WVDIAL_PID_FILE" ]] && WVDIAL_CTL_FILE="/var/run/wvdial-$1.pid"
   [[ -z "$WVDIAL_FLAGS" ]] && WVDIAL_FLAGS=""
 
-  dtach -x $WVDIAL_PID_FILE wvdial -C $WVDIAL_CONFIG $WVDIAL_FLAGS $1
+  dtach -x $WVDIAL_CTL_FILE wvdial -C $WVDIAL_CONFIG $WVDIAL_FLAGS $1
 
   if [[ $? -ne 0 ]]; then
     report_fail "WVDIAL connection failed"
@@ -36,10 +36,9 @@ wvdial_up () {
 
 wvdial_down() {
     load_profile $1
-    [[ -z "$WVDIAL_PID_FILE" ]] && WVDIAL_PID_FILE="/var/run/openvpn-$1.pid"
+    [[ -z "$WVDIAL_PID_FILE" ]] && WVDIAL_CTL_FILE="/var/run/wvdial-$1.pid"
 
-    #kill $(head -1 $WVDIAL_PID_FILE) #trovare un modo per chiudere una sessione di dtach
-    #rm $WVDIAL_PID_FILE
+    kill $(pidof -o %PPID wvdial)
 
     # Restore an old resolv.conf
     if [[ -e /tmp/wvdial-$1-resolv.conf ]]; then
